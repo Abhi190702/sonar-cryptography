@@ -171,7 +171,7 @@ class DuplicateParameterFindingsTest extends TestBase {
                     maskGenerationFunctionNode.getChildren().get(MessageDigest.class);
             assertThat(messageDigestNode1).isNotNull();
             assertThat(messageDigestNode1.getChildren()).hasSize(4);
-            assertThat(messageDigestNode1.asString()).isEqualTo("SHA512");
+            assertThat(messageDigestNode1.asString()).isEqualTo("SHA-512");
 
             // BlockSize under MessageDigest under MaskGenerationFunction under PublicKeyEncryption
             INode blockSizeNode = messageDigestNode1.getChildren().get(BlockSize.class);

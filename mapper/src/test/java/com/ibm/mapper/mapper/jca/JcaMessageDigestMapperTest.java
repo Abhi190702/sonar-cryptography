@@ -57,7 +57,7 @@ class JcaMessageDigestMapperTest {
         assertThat(messageDigestOptional).isPresent();
 
         MessageDigest messageDigest = messageDigestOptional.get();
-        assertThat(messageDigest.getName()).isEqualTo("SHA512/224");
+        assertThat(messageDigest.getName()).isEqualTo("SHA-512/224");
         assertThat(messageDigest.getDigestSize()).isPresent();
         assertThat(messageDigest.getDigestSize().get().getValue()).isEqualTo(224);
         assertThat(messageDigest.hasChildren()).isTrue();

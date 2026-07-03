@@ -20,6 +20,7 @@
 package com.ibm.mapper.model.algorithms;
 
 import com.ibm.mapper.model.Algorithm;
+import com.ibm.mapper.model.IPrimitive;
 import com.ibm.mapper.model.KeyAgreement;
 import com.ibm.mapper.utils.DetectionLocation;
 import javax.annotation.Nonnull;
@@ -43,11 +44,18 @@ import javax.annotation.Nonnull;
  *   <li>Menezes-Qu-Vanstone
  * </ul>
  */
-public final class MQV extends Algorithm implements KeyAgreement {
+public class MQV extends Algorithm implements KeyAgreement {
 
-    private static final String NAME = "MQV";
+    private static final String NAME = "FFMQV";
 
     public MQV(@Nonnull DetectionLocation detectionLocation) {
         super(NAME, KeyAgreement.class, detectionLocation);
+    }
+
+    protected MQV(
+            @Nonnull String name,
+            @Nonnull final Class<? extends IPrimitive> asKind,
+            @Nonnull DetectionLocation detectionLocation) {
+        super(name, asKind, detectionLocation);
     }
 }

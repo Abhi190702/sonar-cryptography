@@ -34,7 +34,7 @@ generated_text = text_model.generate("prompt1", "prompt2")
 # 
 # PrivateKey EC
 #   Signature EdDSA
-#       MessageDigest SHA512
+#       MessageDigest SHA-512
 #       EllipticCurveAlgorithm EC
 #           EllipticCurve Curve25519
 #       Sign SIGN

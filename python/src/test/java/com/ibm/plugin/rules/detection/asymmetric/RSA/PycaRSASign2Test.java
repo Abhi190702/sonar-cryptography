@@ -129,7 +129,7 @@ class PycaRSASign2Test extends TestBase {
         INode signatureNode = privateKeyNode.getChildren().get(Signature.class);
         assertThat(signatureNode).isNotNull();
         assertThat(signatureNode.getChildren()).hasSize(2);
-        assertThat(signatureNode.asString()).isEqualTo("SHA3-384withRSA");
+        assertThat(signatureNode.asString()).isEqualTo("RSA-PKCS1-1.5-SHA3-384");
 
         // MessageDigest under Signature under PrivateKey
         INode messageDigestNode = signatureNode.getChildren().get(MessageDigest.class);

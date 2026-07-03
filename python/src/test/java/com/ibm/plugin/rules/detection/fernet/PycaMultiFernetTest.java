@@ -115,7 +115,7 @@ class PycaMultiFernetTest extends TestBase {
         INode blockCipherNode = authenticatedEncryptionNode.getChildren().get(BlockCipher.class);
         assertThat(blockCipherNode).isNotNull();
         assertThat(blockCipherNode.getChildren()).hasSize(5);
-        assertThat(blockCipherNode.asString()).isEqualTo("AES128-CBC-PKCS7");
+        assertThat(blockCipherNode.asString()).isEqualTo("AES-128-CBC-PKCS7");
 
         // BlockSize under BlockCipher under AuthenticatedEncryption under SecretKey
         INode blockSizeNode = blockCipherNode.getChildren().get(BlockSize.class);
@@ -151,7 +151,7 @@ class PycaMultiFernetTest extends TestBase {
         INode macNode = authenticatedEncryptionNode.getChildren().get(Mac.class);
         assertThat(macNode).isNotNull();
         assertThat(macNode.getChildren()).hasSize(3);
-        assertThat(macNode.asString()).isEqualTo("HMAC-SHA256");
+        assertThat(macNode.asString()).isEqualTo("HMAC-SHA-256");
 
         // Tag under Mac under AuthenticatedEncryption under SecretKey
         INode tagNode = macNode.getChildren().get(Tag.class);
@@ -169,7 +169,7 @@ class PycaMultiFernetTest extends TestBase {
         INode messageDigestNode = macNode.getChildren().get(MessageDigest.class);
         assertThat(messageDigestNode).isNotNull();
         assertThat(messageDigestNode.getChildren()).hasSize(4);
-        assertThat(messageDigestNode.asString()).isEqualTo("SHA256");
+        assertThat(messageDigestNode.asString()).isEqualTo("SHA-256");
 
         // BlockSize under MessageDigest under Mac under AuthenticatedEncryption under SecretKey
         INode blockSizeNode1 = messageDigestNode.getChildren().get(BlockSize.class);

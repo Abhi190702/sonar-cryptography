@@ -48,7 +48,7 @@ public class BcOAEPEncodingTestFile {
             // This detection should optimally not happen once RSA has been detected as a child finding of OAEPEncoding
             AsymmetricBlockCipher engine = new RSAEngine(); // Noncompliant {{(PublicKeyEncryption) RSA}}
 
-            OAEPEncoding cipher = new OAEPEncoding(engine, new NonMemoableDigest(new SHA3Digest()), new SHA512Digest(), new byte[16]); // Noncompliant {{(MessageDigest) SHA3}} {{(MessageDigest) SHA3}} {{(MessageDigest) SHA512}} {{(PublicKeyEncryption) RSA-OAEP}}
+            OAEPEncoding cipher = new OAEPEncoding(engine, new NonMemoableDigest(new SHA3Digest()), new SHA512Digest(), new byte[16]); // Noncompliant {{(MessageDigest) SHA3}} {{(MessageDigest) SHA3}} {{(MessageDigest) SHA-512}} {{(PublicKeyEncryption) RSA-OAEP}}
 
             BigInteger mod = pub.getModulus();
             BigInteger exp = pub.getPublicExponent();

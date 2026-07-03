@@ -99,7 +99,7 @@ class PycaEllipticCurveSignTest extends TestBase {
         INode signatureNode = privateKeyNode.getChildren().get(Signature.class);
         assertThat(signatureNode).isNotNull();
         assertThat(signatureNode.getChildren()).hasSize(3);
-        assertThat(signatureNode.asString()).isEqualTo("SHA3-512withECDSA");
+        assertThat(signatureNode.asString()).isEqualTo("ECDSA-secp384r1-SHA3-512");
 
         // MessageDigest under Signature under PrivateKey
         INode messageDigestNode = signatureNode.getChildren().get(MessageDigest.class);
