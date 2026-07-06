@@ -24,18 +24,17 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 /**
- * A recorded call site accumulated by the {@link CallStackAgent} for later cross-file hook
- * matching.
+ * A recorded call that retains its live AST tree and scan context — today's behavior. While the
+ * call's file is being analyzed, this form is used so same-file hook detections resolve and report
+ * SonarQube issues through the live context.
  *
- * <p>{@link RetainedCall} keeps the live AST tree (today's behavior); {@link DetachedCall} holds a
- * tree-free snapshot so the file's AST can be garbage-collected after analysis.
+ * <p>If the call is detachable, {@link #detachedForm} carries a pre-built tree-free {@link
+ * DetachedCall} (its arguments resolved at record time). When the call's file finishes analysis,
+ * the {@link CallStackAgent} swaps this entry for {@link #detachedForm}, dropping the tree so the
+ * file's AST becomes garbage-collectable while cross-file matching continues from the snapshot.
  */
-public sealed interface CallContext<R, T> permits RetainedCall, DetachedCall {
-
-    /** The recorded call tree, or {@code null} for a detached record that holds no AST. */
-    @Nullable T tree();
-
-    /** The scan context of the file the call was recorded in. */
-    @Nonnull
-    IScanContext<R, T> publisher();
-}
+public record RetainedCall<R, T>(
+        @Nonnull T tree,
+        @Nonnull IScanContext<R, T> publisher,
+        @Nullable DetachedCall<R, T> detachedForm)
+        implements CallContext<R, T> {}

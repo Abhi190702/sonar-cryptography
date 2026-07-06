@@ -17,18 +17,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ibm.engine.hooks;
+package com.ibm.engine.callstack;
 
-import com.ibm.engine.callstack.CallContext;
+import java.util.List;
 import javax.annotation.Nonnull;
 
-public interface IHookDetectionObservable<R, T, S, P> {
+/**
+ * Tree-free snapshot of one argument of a detached recorded call: the value(s) it resolved to at
+ * record time (while the file was still live) plus, for each, an AST-free location to report on.
+ */
+public record ArgSnapshot(int index, @Nonnull List<ResolvedSnapshotValue> values) {
 
-    void subscribe(
-            @Nonnull IHook<R, T, S, P> hook, @Nonnull IHookDetectionObserver<R, T, S, P> listener);
-
-    void unsubscribe(
-            @Nonnull IHook<R, T, S, P> hook, @Nonnull IHookDetectionObserver<R, T, S, P> listener);
-
-    void notify(@Nonnull CallContext<R, T> callContext, @Nonnull IHook<R, T, S, P> hook);
+    /** A single resolved value plus its detached location. */
+    public record ResolvedSnapshotValue(
+            @Nonnull Object value, @Nonnull DetachedSyntaxToken location) {}
 }
