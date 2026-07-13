@@ -42,3 +42,5 @@ build/
 
 ### Generated scan output ###
 cbom.json
+
+.superpowers
